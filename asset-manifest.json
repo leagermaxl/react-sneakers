@@ -7,7 +7,7 @@
     "main.e17b4ce0.js.map": "/react-sneakers/static/js/main.e17b4ce0.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fcb4b39.css",
-    "static/js/main.e17b4ce0.js"
+    "/react-sneakers/static/css/main.4fcb4b39.css",
+    "/react-sneakers/static/js/main.e17b4ce0.js"
   ]
 }
