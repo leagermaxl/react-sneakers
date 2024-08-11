@@ -1,6 +1,6 @@
 {
   "name": "react-sneakers",
-  "homepage": "https://leagermaxl.github.io/react-sneakers",
+  "homepage": "https://leagermaxl.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,9 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.3",
     "react": "^18.3.1",
+    "react-content-loader": "^7.0.2",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "sass": "^1.77.8",
     "web-vitals": "^2.1.4"
