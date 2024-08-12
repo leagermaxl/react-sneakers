@@ -5,14 +5,9 @@ import Card from '../Components/Card';
 import { AppContext } from '../App';
 
 function Favorites({ onAddToCart, onAddToFavorite }) {
-  const state = React.useContext(AppContext);
+  const { favoriteItems } = React.useContext(AppContext);
 
-  // React.useEffect(() => {
-  //   axios
-  //     .get('https://66ae1047b18f3614e3b6a785.mockapi.io/favorited')
-  //     .then((res) => setFavorite(res.data));
-  // }, []);
-  return state.favoriteItems.length !== 0 ? (
+  return favoriteItems.length !== 0 ? (
     <div className="content">
       <div className="content-top-favorites">
         <Link to={'/'}>
@@ -21,15 +16,21 @@ function Favorites({ onAddToCart, onAddToFavorite }) {
         <h1>Мои закладки</h1>
       </div>
       <div className="sneakers">
-        {state.favoriteItems.map((obj, index) => (
-          <Card key={index} onPlus={onAddToCart} onFavorite={onAddToFavorite} {...obj} />
+        {favoriteItems.map((obj, index) => (
+          <Card
+            key={index}
+            onPlus={onAddToCart}
+            onFavorite={onAddToFavorite}
+            {...obj}
+            id={obj.parentId}
+          />
         ))}
       </div>
     </div>
   ) : (
-    <div className="emptyFavorites">
-      <img width={70} height={70} src="img/emoji-favorites.png" alt="Emoji" />
-      <div className="emptyFavoritesInfo">
+    <div className="emptyFavoritesAndOrders">
+      <img width={70} height={70} src="img/emoji-favorites.svg" alt="Emoji" />
+      <div className="emptyFavoritesAndOrdersInfo">
         <h3>Закладок нет :(</h3>
         <p>Вы ничего не добавляли в закладки</p>
       </div>

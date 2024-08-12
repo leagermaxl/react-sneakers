@@ -1,18 +1,20 @@
 import React from 'react';
-import styles from './Card.module.scss';
 import ContentLoader from 'react-content-loader';
+
 import { AppContext } from '../../App';
 
+import styles from './Card.module.scss';
+
 function Card({ onPlus, onFavorite, loading, id, title, urlImage, price }) {
-  const state = React.useContext(AppContext);
+  const { isAddToFavorites, isAddToCart } = React.useContext(AppContext);
 
   const onClickPlus = () => {
-    onPlus({ id, title, urlImage, price });
+    onPlus({ id, parentId: id, title, urlImage, price });
   };
 
   const onClickFavorite = () => {
     // console.log(item);
-    onFavorite({ id, title, urlImage, price });
+    onFavorite({ id, parentId: id, title, urlImage, price });
   };
 
   return loading ? (
@@ -34,13 +36,15 @@ function Card({ onPlus, onFavorite, loading, id, title, urlImage, price }) {
     </ContentLoader>
   ) : (
     <div className={styles.card}>
-      <div className={styles.favorite}>
-        <img
-          onClick={onClickFavorite}
-          src={state.isAddToFavorites(id) ? 'img/liked.svg' : 'img/unliked.svg'}
-          alt="Unliked"
-        />
-      </div>
+      {onFavorite && (
+        <div className={styles.favorite}>
+          <img
+            onClick={onClickFavorite}
+            src={isAddToFavorites(id) ? 'img/liked.svg' : 'img/unliked.svg'}
+            alt="Unliked"
+          />
+        </div>
+      )}
       <img width={150} height={126} src={urlImage} alt="Sneaker" />
       <h5>{title}</h5>
       <div className={styles.cardBottom}>
@@ -48,12 +52,14 @@ function Card({ onPlus, onFavorite, loading, id, title, urlImage, price }) {
           <span>Цена:</span>
           <b>{price} руб.</b>
         </div>
-        <img
-          onClick={onClickPlus}
-          className={styles.button}
-          src={state.isAddToCart(id) ? 'img/btn-checked.svg' : 'img/btn-plus.svg'}
-          alt="Plus"
-        />
+        {onPlus && (
+          <img
+            onClick={onClickPlus}
+            className={styles.button}
+            src={isAddToCart(id) ? 'img/btn-checked.svg' : 'img/btn-plus.svg'}
+            alt="Plus"
+          />
+        )}
       </div>
     </div>
   );

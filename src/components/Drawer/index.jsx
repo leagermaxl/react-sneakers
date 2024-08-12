@@ -2,15 +2,18 @@ import React from 'react';
 import axios from 'axios';
 
 import Info from './Info';
-import { AppContext } from '../App';
+import { useCart } from '../Hooks/useCart';
+
+import styles from './Drawer.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer({ items = [], onRemove, clickCloseCart }) {
-  const { cartItems, setCartItems } = React.useContext(AppContext);
+function Drawer({ items = [], onRemove, clickCloseCart, opened }) {
   const [orderId, setOrderId] = React.useState(null);
   const [isOrderComplete, setIsOrderComlete] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const { cartItems, setCartItems, totalPrice } = useCart();
 
   const onClickOrder = async () => {
     try {
@@ -22,7 +25,7 @@ function Drawer({ items = [], onRemove, clickCloseCart }) {
 
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        await axios.delete(`https://66ae1047b18f3614e3b6a785.mockapi.io/cart/${item.id}`);
+        await axios.delete(`https://751e092a9f248e19.mokky.dev/cart/${item.id}`);
         delay(1000);
       }
       setCartItems([]);
@@ -35,25 +38,24 @@ function Drawer({ items = [], onRemove, clickCloseCart }) {
   };
 
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div className={styles.drawer}>
         <h2>
-          Корзина{' '}
+          Корзина
           <img
             onClick={clickCloseCart}
-            className="btn-remove"
+            className={styles.btnRemove}
             src="img/btn-remove.svg"
             alt="Close"
           />
         </h2>
-
         {items.length !== 0 ? (
-          <div className="cartNoEmpty">
-            <div className="items">
+          <div className={styles.cartNoEmpty}>
+            <div className={styles.items}>
               {items.map((item) => (
-                <div key={item.id} className="cart-item">
+                <div key={item.id} className={styles.cartItem}>
                   <img width={70} height={70} src={item.urlImage} alt="sneaker" />
-                  <div className="cart-info">
+                  <div className={styles.cartInfo}>
                     <p>{item.title}</p>
                     <b>{item.price} руб.</b>
                   </div>
@@ -61,35 +63,32 @@ function Drawer({ items = [], onRemove, clickCloseCart }) {
                     onClick={() => {
                       onRemove(item.id);
                     }}
-                    className="btn-remove"
+                    className={styles.btnRemove}
                     src="img/btn-remove.svg"
                     alt="Remove"
                   />
                 </div>
               ))}
             </div>
-            <div className="cardTotalBlock">
+            <div className={styles.cardTotalBlock}>
               <ul>
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>21 498 руб.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>1074 руб.</b>
+                  <b>{(totalPrice * 0.05).toFixed(2)} руб.</b>
                 </li>
               </ul>
-              <button className="greenButton" onClick={onClickOrder} disabled={isLoading}>
+              <button className={styles.greenButton} onClick={onClickOrder} disabled={isLoading}>
                 Оформить заказ <img src="img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
         ) : (
-          //
-          //Корзина пустая
-          //Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
           <Info
             title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
             description={
