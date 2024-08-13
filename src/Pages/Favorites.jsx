@@ -10,7 +10,7 @@ function Favorites({ onAddToCart, onAddToFavorite }) {
   return favoriteItems.length !== 0 ? (
     <div className="content">
       <div className="content-top-favorites">
-        <Link to={'/'}>
+        <Link to={'/react-sneakers/'}>
           <img src="img/btn-back.svg" alt="Back" />
         </Link>
         <h1>Мои закладки</h1>
@@ -34,7 +34,7 @@ function Favorites({ onAddToCart, onAddToFavorite }) {
         <h3>Закладок нет :(</h3>
         <p>Вы ничего не добавляли в закладки</p>
       </div>
-      <Link to={'/'}>
+      <Link to={'/react-sneakers/'}>
         <button className="greenButton">
           <img src="img/arrow.svg" alt="Arrow" />
           Вернуться назад

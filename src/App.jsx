@@ -130,7 +130,7 @@ function App() {
         <Header clickOpenCart={openCloseCart} />
         <Routes>
           <Route
-            path="/"
+            path="react-sneakers/"
             element={
               <Home
                 searchValue={searchValue}
@@ -144,11 +144,11 @@ function App() {
             exact
           />
           <Route
-            path="/favorites"
+            path="react-sneakers/favorites"
             element={<Favorites onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite} />}
             exact
           />
-          <Route path="/orders" element={<Orders />} exact />
+          <Route path="react-sneakers/orders" element={<Orders />} exact />
         </Routes>
       </div>
     </AppContext.Provider>

@@ -22,7 +22,7 @@ function Orders() {
   return orderItems.length !== 0 ? (
     <div className="content">
       <div className="content-top-favorites">
-        <Link to={'/'}>
+        <Link to={'/react-sneakers/'}>
           <img src="img/btn-back.svg" alt="Back" />
         </Link>
         <h1>Мои покупки</h1>
@@ -51,7 +51,7 @@ function Orders() {
         <p>Вы нищеброд?</p>
         <p>Оформите хотя бы один заказ.</p>
       </div>
-      <Link to={'/'}>
+      <Link to={'/react-sneakers/'}>
         <button className="greenButton">
           <img src="img/arrow.svg" alt="Arrow" />
           Вернуться назад
