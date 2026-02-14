@@ -20,7 +20,7 @@ function Header(props) {
       <ul className="header-right">
         <li className="btnHeader" onClick={props.clickOpenCart}>
           <img width={18} height={18} src="img/cart.svg" alt="cart" />
-          <span>{totalPrice} руб.</span>
+          <span>{totalPrice} грн.</span>
         </li>
         <Link to={'react-sneakers/favorites'} className="link">
           <li className="btnHeader">

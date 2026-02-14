@@ -57,7 +57,7 @@ function Drawer({ items = [], onRemove, clickCloseCart, opened }) {
                   <img width={70} height={70} src={item.urlImage} alt="sneaker" />
                   <div className={styles.cartInfo}>
                     <p>{item.title}</p>
-                    <b>{item.price} руб.</b>
+                    <b>{item.price} грн.</b>
                   </div>
                   <img
                     onClick={() => {
@@ -75,12 +75,12 @@ function Drawer({ items = [], onRemove, clickCloseCart, opened }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>{totalPrice} руб.</b>
+                  <b>{totalPrice} грн.</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>{(totalPrice * 0.05).toFixed(2)} руб.</b>
+                  <b>{(totalPrice * 0.05).toFixed(2)} грн.</b>
                 </li>
               </ul>
               <button className={styles.greenButton} onClick={onClickOrder} disabled={isLoading}>

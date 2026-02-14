@@ -50,7 +50,7 @@ function Card({ onPlus, onFavorite, loading, id, title, urlImage, price }) {
       <div className={styles.cardBottom}>
         <div className={styles.cardInfo}>
           <span>Цена:</span>
-          <b>{price} руб.</b>
+          <b>{price} грн.</b>
         </div>
         {onPlus && (
           <img
